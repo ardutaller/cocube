@@ -3,54 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashear ESP32 con GitHub Pages</title>
+    <title>Instalador Web para ESP32 (GitHub Pages)</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: #f4f4f4;
+            background-color: #e9ecef;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background: #fff;
+            background: #ffffff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         h1 {
-            color: #333;
+            color: #007bff;
+            margin-bottom: 20px;
         }
         p {
-            color: #666;
+            color: #495057;
             line-height: 1.6;
         }
-        /* Estilos básicos para el botón de instalación */
+        /* Estilos del componente de instalación */
         esp-web-install-button {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         esp-web-install-button button {
-            background-color: #007bff;
+            background-color: #28a745; /* Verde para Instalar */
             color: white;
             border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            padding: 12px 25px;
+            font-size: 18px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        esp-web-install-button button:hover {
+            background-color: #218838;
+        }
+        .info {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            color: #856404;
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Instalador Web para ESP32</h1>
-        <p>Conecta tu dispositivo ESP32 a tu ordenador mediante un cable USB. Asegúrate de que estás usando un navegador compatible (Google Chrome o Edge).</p>
+        <h1>Flasheo de ESP32 vía Web 💾</h1>
+        <p>Este instalador utiliza la Web Serial API. Para funcionar, **debes usar Google Chrome, Microsoft Edge o Opera** en una conexión **HTTPS** (como GitHub Pages).</p>
 
         <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web-install-button.js?module"></script>
         
@@ -58,13 +68,19 @@
             manifest="manifest.json"
         >
             <button slot="activate">🔌 Conectar e Instalar Firmware</button>
-            <span slot="unsupported">🚨 Error: Tu navegador no soporta la API Web Serial (usa Chrome o Edge).</span>
-            <span slot="not-allowed">🚨 Error: La conexión solo es posible en sitios con HTTPS (GitHub Pages lo soporta).</span>
+            <span slot="unsupported">❌ Tu navegador no soporta la Web Serial API. ¡Usa Chrome o Edge!</span>
+            <span slot="not-allowed">⚠️ Conexión no segura. Asegúrate de estar en una URL HTTPS.</span>
         </esp-web-install-button>
 
-        <p style="margin-top: 30px; font-size: 0.9em;">
-            Una vez que hagas clic, aparecerá un cuadro de diálogo para que selecciones el puerto COM de tu ESP32.
-        </p>
+        <div class="info">
+            <strong>Instrucciones:</strong>
+            <ol>
+                <li>Conecta tu ESP32 al ordenador con un cable USB de datos.</li>
+                <li>Haz clic en el botón **"Conectar e Instalar Firmware"**.</li>
+                <li>Selecciona el puerto serial de tu ESP32 en la ventana emergente.</li>
+                <li>El flasheo comenzará automáticamente.</li>
+            </ol>
+        </div>
     </div>
 
 </body>
