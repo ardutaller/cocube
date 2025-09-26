@@ -1,8 +1,27 @@
-<script
-  type="module"
-  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
-></script>
-
-<esp-web-install-button
-  manifest="https://firmware.esphome.io/esp-web-tools/manifest.json"
-></esp-web-install-button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Flasher ESP32 Web</title>
+  <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    esp-web-install-button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Flashear ESP32 vía Web</h1>
+  <p>Conecta tu ESP32 por USB y pulsa el botón:</p>
+  
+  <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+</body>
+</html>
