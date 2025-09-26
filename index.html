@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instalador ESP32</title>
-  <!-- Cargar ESP Web Tools -->
-  <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashear ESP32 con GitHub Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        /* Estilos básicos para el botón de instalación */
+        esp-web-install-button {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        esp-web-install-button button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
-  <h1>Instalar firmware en ESP32</h1>
-  <p>Conecta tu ESP32 por USB y pulsa el botón:</p>
+<body>
 
-  <!-- Botón de instalación -->
-  <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+    <div class="container">
+        <h1>Instalador Web para ESP32</h1>
+        <p>Conecta tu dispositivo ESP32 a tu ordenador mediante un cable USB. Asegúrate de que estás usando un navegador compatible (Google Chrome o Edge).</p>
 
-  <p style="margin-top: 20px; font-size: 14px; color: gray;">
-    Compatible con Chrome, Edge o navegadores basados en Chromium.
-  </p>
+        <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web-install-button.js?module"></script>
+        
+        <esp-web-install-button
+            manifest="manifest.json"
+        >
+            <button slot="activate">🔌 Conectar e Instalar Firmware</button>
+            <span slot="unsupported">🚨 Error: Tu navegador no soporta la API Web Serial (usa Chrome o Edge).</span>
+            <span slot="not-allowed">🚨 Error: La conexión solo es posible en sitios con HTTPS (GitHub Pages lo soporta).</span>
+        </esp-web-install-button>
+
+        <p style="margin-top: 30px; font-size: 0.9em;">
+            Una vez que hagas clic, aparecerá un cuadro de diálogo para que selecciones el puerto COM de tu ESP32.
+        </p>
+    </div>
+
 </body>
 </html>
