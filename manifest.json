@@ -1,12 +1,15 @@
 {
-  "name": "Firmware ESP32",
-  "version": "1.0.0",
-  "build": "2025-09-23",
-  "files": [
+  "name": "Instalador Web para ESP32",
+  "version": "1.0",
+  "builds": [
     {
-      "address": 0,
-      "path": "firmware.bin",
-      "chipFamily": "ESP32"
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "firmware.bin",
+          "offset": 0
+        }
+      ]
     }
   ]
 }
