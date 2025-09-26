@@ -1,14 +1,20 @@
 {
-  "name": "Instalador Web para ESP32",
-  "version": "1.0",
+  "name": "ESPHome",
+  "version": "2021.11.0",
+  "home_assistant_domain": "esphome",
+  "funding_url": "https://esphome.io/guides/supporters.html",
+  "new_install_prompt_erase": false,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
-        {
-          "path": "firmware/mi_firmware.bin",
-          "offset": 65536
-        }
+        { "path": "merged-firmware.bin", "offset": 0 },
+      ]
+    },
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "firmware.bin", "offset": 0 }
       ]
     }
   ]
