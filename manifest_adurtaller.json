@@ -1,11 +1,11 @@
 {
-  "name": "CoCube Configuracion inicial",
+  "name": "CoCube Control Ardutaller APP",
   "version": "1.0.0",
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "firmware.bin", "offset": 0}
+        { "path": "cocube_ardutaller.bin", "offset": 0}
       ]
     }
   ]
