@@ -1,494 +1,490 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CoCube Firmware Installer</title>
+<title>CoCube Firmware Installer</title>
 
-  <script type="module"
-    src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js">
-  </script>
+<script type="module"
+src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js">
+</script>
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    body{
+body{
 
-      min-height:100vh;
+min-height:100vh;
 
-      font-family:Segoe UI, Arial, sans-serif;
+font-family:Segoe UI,Arial,sans-serif;
 
-      background:
-      radial-gradient(circle at top,#1e3a5f 0%,transparent 35%),
-      linear-gradient(135deg,#050816,#0f172a);
+background:
+radial-gradient(circle at top,#1e3a5f 0%,transparent 35%),
+linear-gradient(135deg,#050816,#0f172a);
 
-      color:white;
+color:white;
 
-      display:flex;
-      justify-content:center;
-      align-items:center;
+display:flex;
 
-      padding:24px;
-    }
+justify-content:center;
 
-    .container{
+align-items:center;
 
-      width:100%;
-      max-width:760px;
+padding:24px;
 
-      padding:42px 34px;
+}
 
-      border-radius:28px;
+.container{
 
-      text-align:center;
+width:100%;
+max-width:760px;
 
-      background:rgba(15,23,42,0.88);
+padding:42px 34px;
 
-      border:1px solid rgba(56,189,248,0.35);
+border-radius:28px;
 
-      box-shadow:
-      0 0 40px rgba(56,189,248,0.18),
-      inset 0 0 25px rgba(56,189,248,0.04);
+text-align:center;
 
-      backdrop-filter:blur(10px);
-    }
+background:rgba(15,23,42,0.88);
 
-    .logo{
-      width:240px;
-      max-width:90%;
-      margin-bottom:28px;
-      transition:0.3s;
-    }
+border:1px solid rgba(56,189,248,0.35);
 
-    .logo:hover{
-      transform:scale(1.03);
-    }
+box-shadow:
+0 0 40px rgba(56,189,248,0.18),
+inset 0 0 25px rgba(56,189,248,0.04);
 
-    .subtitle{
+backdrop-filter:blur(10px);
 
-      color:#38bdf8;
+}
 
-      text-transform:uppercase;
+.logo{
 
-      letter-spacing:3px;
+width:240px;
 
-      font-size:0.85rem;
+max-width:90%;
 
-      margin-bottom:18px;
-    }
+margin-bottom:28px;
 
-    h1{
+transition:.3s;
 
-      font-size:clamp(2rem,4vw,3rem);
+}
 
-      line-height:1.2;
+.logo:hover{
+transform:scale(1.03);
+}
 
-      margin-bottom:22px;
-    }
+.subtitle{
 
-    .description{
+color:#38bdf8;
 
-      color:#cbd5e1;
+text-transform:uppercase;
 
-      line-height:1.8;
+letter-spacing:3px;
 
-      font-size:1.08rem;
+font-size:.85rem;
 
-      margin-bottom:28px;
-    }
+margin-bottom:18px;
 
-    .selector{
+}
 
-      margin-bottom:30px;
-    }
+h1{
 
-    select{
+font-size:clamp(2rem,4vw,3rem);
 
-      width:100%;
-      max-width:520px;
+line-height:1.2;
 
-      padding:15px 18px;
+margin-bottom:22px;
 
-      border-radius:16px;
+}
 
-      background:#020617;
+.description{
 
-      border:1px solid rgba(125,211,252,0.4);
+color:#cbd5e1;
 
-      color:white;
+line-height:1.8;
 
-      font-size:1rem;
+font-size:1.08rem;
 
-      outline:none;
-    }
+margin-bottom:28px;
 
-    select:focus{
+}
 
-      border-color:#38bdf8;
+.selector{
+margin-bottom:30px;
+}
 
-      box-shadow:0 0 18px rgba(56,189,248,0.25);
-    }
+select{
 
-    .status{
+width:100%;
 
-      display:inline-block;
+max-width:520px;
 
-      padding:12px 18px;
+padding:15px 18px;
 
-      margin-bottom:32px;
+border-radius:16px;
 
-      border-radius:999px;
+background:#020617;
 
-      background:rgba(34,197,94,0.10);
+border:1px solid rgba(125,211,252,.4);
 
-      border:1px solid rgba(34,197,94,0.35);
+color:white;
 
-      color:#86efac;
+font-size:1rem;
 
-      font-size:0.85rem;
+outline:none;
 
-      letter-spacing:1px;
+}
 
-      font-weight:600;
-    }
+.status{
 
-    .flash-box{
+display:inline-block;
 
-      padding:32px;
+padding:12px 18px;
 
-      border-radius:24px;
+margin-bottom:32px;
 
-      background:rgba(2,6,23,0.85);
+border-radius:999px;
 
-      border:1px dashed rgba(125,211,252,0.4);
+background:rgba(34,197,94,.10);
 
-      margin-bottom:28px;
-    }
+border:1px solid rgba(34,197,94,.35);
 
-    .driver-button{
+color:#86efac;
 
-      display:inline-block;
+font-size:.85rem;
 
-      padding:15px 24px;
+font-weight:600;
 
-      border-radius:16px;
+}
 
-      background:linear-gradient(135deg,#0284c7,#2563eb);
+.flash-box{
 
-      color:white;
+padding:32px;
 
-      text-decoration:none;
+border-radius:24px;
 
-      font-weight:700;
+background:rgba(2,6,23,.85);
 
-      letter-spacing:0.5px;
+border:1px dashed rgba(125,211,252,.4);
 
-      box-shadow:0 10px 24px rgba(37,99,235,0.35);
+margin-bottom:28px;
 
-      transition:0.3s;
-    }
+}
 
-    .driver-button:hover{
+.driver-button{
 
-      transform:translateY(-2px);
+display:inline-block;
 
-      box-shadow:0 14px 34px rgba(37,99,235,0.55);
-    }
+padding:15px 24px;
 
-    .note{
+border-radius:16px;
 
-      margin-top:22px;
+background:linear-gradient(135deg,#0284c7,#2563eb);
 
-      color:#94a3b8;
+color:white;
 
-      font-size:0.95rem;
+text-decoration:none;
 
-      line-height:1.7;
-    }
+font-weight:700;
 
-    .extra-links{
+}
 
-      margin-top:38px;
+.note{
 
-      display:flex;
+margin-top:22px;
 
-      flex-direction:column;
+color:#94a3b8;
 
-      gap:34px;
-    }
+font-size:.95rem;
 
-    .extra-item{
+line-height:1.7;
 
-      display:flex;
+}
 
-      flex-direction:column;
+.extra-links{
 
-      align-items:center;
-    }
+margin-top:38px;
 
-    .extra-text{
+display:flex;
 
-      color:#cbd5e1;
+flex-direction:column;
 
-      font-size:0.95rem;
+gap:34px;
 
-      margin-bottom:12px;
+}
 
-      line-height:1.5;
-    }
+.extra-item{
 
-    .extra-logo{
+display:flex;
 
-      transition:0.3s;
+flex-direction:column;
 
-      opacity:0.92;
-    }
+align-items:center;
 
-    .extra-logo:hover{
+}
 
-      transform:scale(1.05);
+.extra-text{
 
-      opacity:1;
-    }
+color:#cbd5e1;
 
-    .microblocks-logo{
+font-size:.95rem;
 
-      width:150px;
+margin-bottom:12px;
 
-      max-width:80%;
-    }
+}
 
-    .ardutaller-logo{
+.microblocks-logo{
+width:150px;
+}
 
-      width:140px;
+.ardutaller-logo{
+width:140px;
+}
 
-      max-width:80%;
-    }
+.innova-logo{
 
-    .innova-logo{
+width:180px;
 
-      width:180px;
+border-radius:10px;
 
-      max-width:85%;
+}
 
-      border-radius:10px;
-    }
+footer{
 
-    footer{
+margin-top:34px;
 
-      margin-top:34px;
+color:#94a3b8;
 
-      color:#94a3b8;
+font-size:.95rem;
 
-      line-height:1.8;
+line-height:1.8;
 
-      font-size:0.95rem;
-    }
+}
 
-    a{
-      color:#38bdf8;
-    }
+a{
+color:#38bdf8;
+}
 
-    @media(max-width:600px){
+</style>
 
-      .container{
-        padding:30px 20px;
-      }
-
-      h1{
-        font-size:2rem;
-      }
-
-      .flash-box{
-        padding:24px 16px;
-      }
-    }
-
-  </style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <a href="https://www.ardutaller.com.es/cocube/" target="_blank">
+<a href="https://www.ardutaller.com.es/cocube/" target="_blank">
 
-      <img
-        class="logo"
-        src="https://raw.githubusercontent.com/ardutaller/images/main/logo_cocube_steamakers.png"
-        alt="Logo CoCube">
+<img
+class="logo"
+src="https://raw.githubusercontent.com/ardutaller/images/main/logo_cocube_steamakers.png">
 
-    </a>
+</a>
 
-    <div class="subtitle">
-      Firmware Upload System
-    </div>
+<div class="subtitle">
+Firmware Upload System
+</div>
 
-    <h1>
-      CoCube <br>
-      Firmware Installer
-    </h1>
+<h1>
 
-    <p class="description">
+CoCube
 
-      Selecciona el firmware que deseas instalar
-      y pulsa el botón de conexión.
+<br>
 
-    </p>
+Firmware Installer
 
-    <div class="selector">
+</h1>
 
-      <select id="firmwareSelect">
+<p class="description">
 
-        <option value="programa_inicial_cocube.json">
-          Programa Inicial CoCube
-        </option>
+Selecciona el firmware que deseas instalar y pulsa conectar.
 
-        <option value="control_cocube_app_ardutaller.json">
-          Control CoCube App Ardutaller
-        </option>
+</p>
 
-      </select>
+<div class="selector">
 
-    </div>
+<select id="firmwareSelect">
 
-    <div class="status">
-      ● SISTEMA LISTO
-    </div>
+<option value="programa_inicial_cocube.json">
+Programa Inicial CoCube
+</option>
 
-    <div class="flash-box">
+<option value="control_cocube_app_ardutaller.json">
+Control CoCube App Ardutaller
+</option>
 
-      <esp-web-install-button
-        id="installButton"
-        manifest="programa_inicial_cocube.json">
-      </esp-web-install-button>
+<option value="mani_sigue_ruta.json">
+CoCube sigue la ruta
+</option>
 
-    </div>
+</select>
 
-    <a
-      class="driver-button"
-      href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers"
-      target="_blank">
+</div>
 
-      ⬇ DESCARGAR DRIVER USB
+<div class="status">
 
-    </a>
+● SISTEMA LISTO
 
-    <p class="note">
+</div>
 
-      Si el dispositivo no aparece,
-      instala el controlador USB correspondiente.
+<div class="flash-box">
 
-    </p>
+<esp-web-install-button
+id="installButton"
+manifest="programa_inicial_cocube.json">
 
-    <div class="extra-links">
+</esp-web-install-button>
 
-      <div class="extra-item">
+</div>
 
-        <p class="extra-text">
-          Puedes programar CoCube utilizando MicroBlocks
-        </p>
+<a
+class="driver-button"
+href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers"
+target="_blank">
 
-        <a
-          href="https://microblocks.fun/"
-          target="_blank">
+⬇ DESCARGAR DRIVER USB
 
-          <img
-            class="extra-logo microblocks-logo"
-            src="https://microblocks.fun/assets/img/logos/MicroBlocks.svg"
-            alt="MicroBlocks">
+</a>
 
-        </a>
+<p class="note">
 
-      </div>
+Si el dispositivo no aparece instala el controlador USB.
 
-      <div class="extra-item">
+</p>
 
-        <p class="extra-text">
-          Puedes encontrar más información en: Steamtaller / Ardutaller
-        </p>
+<div class="extra-links">
 
-        <a
-          href="https://www.ardutaller.com.es/"
-          target="_blank">
+<div class="extra-item">
 
-          <img
-            class="extra-logo ardutaller-logo"
-            src="https://lh3.googleusercontent.com/sitesv/AA5AbUDJdeY31-m6yR0F6WdPQbXzSDrniOrDh-1LkCnUf9YSsj_V9VL0itJYT-uZuqVLiEHPgBhEvJiFkPp8O1ab0T81P_SaMfXhznHXBPtC7F810N5F0Aw-08o-Vqyv9U4qWG_KD5bHZS_oGCfdlJSNmkKuIO7YI_0_jJ71v3ofmcENnllCp4ZI1zwGcYqLNKXlgWAS7PgygwWtooguzsG12qxANfmXP7aBerThY44=w1280"
-            alt="Ardutaller">
+<p class="extra-text">
 
-        </a>
+Puedes programar CoCube utilizando MicroBlocks
 
-      </div>
+</p>
 
-      <div class="extra-item">
+<a href="https://microblocks.fun/" target="_blank">
 
-        <p class="extra-text">
-          Puedes comprar tu CoCube y accesorios en:
-        </p>
+<img
+class="microblocks-logo"
+src="https://microblocks.fun/assets/img/logos/MicroBlocks.svg">
 
-        <a
-          href="https://shop.innovadidactic.com/es/"
-          target="_blank">
+</a>
 
-          <img
-            class="extra-logo innova-logo"
-            src="https://shop.innovadidactic.com/img/innova-logo-1769682570.jpg"
-            alt="Innova Didactic">
+</div>
 
-        </a>
+<div class="extra-item">
 
-      </div>
+<p class="extra-text">
 
-    </div>
+Puedes encontrar más información en:
+Steamtaller / Ardutaller
 
-    <footer>
+</p>
 
-      Basado en
-      <a href="https://github.com/esphome/esp-web-tools" target="_blank">
-        ESP Web Tools
-      </a>
+<a
+href="https://www.ardutaller.com.es/"
+target="_blank">
 
-      <br><br>
+<img
+class="ardutaller-logo"
+src="https://lh3.googleusercontent.com/sitesv/AA5AbUDJdeY31-m6yR0F6WdPQbXzSDrniOrDh-1LkCnUf9YSsj_V9VL0itJYT-uZuqVLiEHPgBhEvJiFkPp8O1ab0T81P_SaMfXhznHXBPtC7F810N5F0Aw-08o-Vqyv9U4qWG_KD5bHZS_oGCfdlJSNmkKuIO7YI_0_jJ71v3ofmcENnllCp4ZI1zwGcYqLNKXlgWAS7PgygwWtooguzsG12qxANfmXP7aBerThY44=w1280">
 
-      Desarrollado por
-      <a href="https://www.franciscojose.es" target="_blank">
-        franciscojose.es
-      </a>
+</a>
 
-      para
-      <a href="https://www.ardutaller.com.es" target="_blank">
-        Ardutaller
-      </a>
+</div>
 
-    </footer>
+<div class="extra-item">
 
-  </div>
+<p class="extra-text">
 
-  <script>
+Puedes comprar tu CoCube y accesorios en:
 
-    const firmwareSelect =
-      document.getElementById("firmwareSelect");
+</p>
 
-    const installButton =
-      document.getElementById("installButton");
+<a
+href="https://shop.innovadidactic.com/es/"
+target="_blank">
 
-    firmwareSelect.addEventListener("change", function(){
+<img
+class="innova-logo"
+src="https://shop.innovadidactic.com/img/innova-logo-1769682570.jpg">
 
-      installButton.setAttribute(
-        "manifest",
-        this.value
-      );
+</a>
 
-    });
+</div>
 
-  </script>
+</div>
+
+<footer>
+
+Basado en
+
+<a
+href="https://github.com/esphome/esp-web-tools"
+target="_blank">
+
+ESP Web Tools
+
+</a>
+
+<br><br>
+
+Desarrollado por
+
+<a
+href="https://www.franciscojose.es"
+target="_blank">
+
+franciscojose.es
+
+</a>
+
+para
+
+<a
+href="https://www.ardutaller.com.es"
+target="_blank">
+
+Ardutaller
+
+</a>
+
+</footer>
+
+</div>
+
+<script>
+
+const firmwareSelect=
+document.getElementById(
+"firmwareSelect"
+);
+
+const installButton=
+document.getElementById(
+"installButton"
+);
+
+firmwareSelect.addEventListener(
+"change",
+function(){
+
+installButton.setAttribute(
+"manifest",
+this.value
+);
+
+}
+);
+
+</script>
 
 </body>
+
 </html>
